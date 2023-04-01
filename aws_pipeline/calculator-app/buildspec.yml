@@ -1,0 +1,18 @@
+version: 0.2
+phases: 
+  install:
+    commands:
+      - echo installing NGINX
+      - sudo apt-get update
+      - sudo apt-get install nginx -y
+  build:
+    commands:
+      - echo Building started on `date`
+      - cp index.html /var/www/html/
+      - zip -r calapp.zip .
+  post_build:
+    command: 
+      - echo Configuring nginx
+artifacts: 
+  files:
+    - '**/*'
